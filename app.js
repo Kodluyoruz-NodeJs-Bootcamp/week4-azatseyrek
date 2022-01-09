@@ -1,14 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
-require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
-
+const cookieParser = require("cookie-parser");
+require("dotenv").config();
 
 const app = express();
 
 // middleware
 app.use(express.static("public"));
 app.use(express.json());
+app.use(cookieParser());
 
 // view engine
 app.set("view engine", "ejs");
@@ -38,3 +39,22 @@ app.get("/programmers", (req, res) => {
 });
 // // Auth routes
 app.use(authRoutes);
+
+//Cookies
+app.get("/set-cookies", (req, res) => {
+  // this is how we define a cookie without using cookieParser
+  // res.setHeader("Set-Cookie", "newUser = true"); 
+
+  // w/cookieParser
+  res.cookie('newUser', false)
+  // res.cookie('isEmployee', true, {maxAge: 1000 * 24 * 60 * 60, httpOnly:true, secure:true}) httpOnly: you can access the cookies only client side, secure:true : https only
+  res.cookie('isEmployee', true, {maxAge: 1000 * 24 * 60 * 60, httpOnly: true})
+  res.send('you got the cookies')
+});
+
+app.get('/read-cookies', (req, res)=> {
+  const cookies = req.cookies
+  console.log(cookies.newUser);
+  res.send(cookies)
+
+})

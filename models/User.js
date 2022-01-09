@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // Fire a function after a doc saved to db
-//This is a mongoose hook. Mongoose  hooks can be used to fire code at different points when documents are saved to the db
+//This is a mongoose hook. Mongoose  hooks can be used to fire a code at different points when documents are saved to the db
 userSchema.post("save", function (doc, next) {
   console.log("New user was created & saved", doc);
   next();
@@ -30,7 +30,7 @@ userSchema.post("save", function (doc, next) {
 });
 
 // fire a function before doc saved to db
-// we can hash password before to save data to db in this 'pre' hook
+// we can hash password before to save data to db inside this 'pre' hook
 userSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt)
