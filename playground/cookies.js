@@ -1,4 +1,8 @@
+// Example for adding a cookie
+
 const cookieParser = require("cookie-parser");
+
+app.use(cookieParser());
 
 //Cookies
 app.get("/set-cookies", (req, res) => {

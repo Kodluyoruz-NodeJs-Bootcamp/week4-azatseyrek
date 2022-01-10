@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const jwt = require('jsonwebtoken')
 
 // handle errors
 const handleErrors = (err) => {
@@ -24,6 +25,18 @@ const handleErrors = (err) => {
   return errors;
 };
 
+// create token
+let expireTime = 3* 24 * 60 * 60 // for expiresIn parameter
+
+// we are going to use this createToke function inside the create User  !!!
+const createToken = (id) => {
+  // jwt.sign('id', 'our key', 'expireTime')
+  return jwt.sign({id}, 'gusto remote team', {
+    expiresIn: expireTime //jwt uses seconds not milliseconds as unit
+  });
+}
+
+
 
 module.exports.signupGet = (req, res) => {
   res.render("signup");
@@ -36,8 +49,12 @@ module.exports.signupPost = async (req, res) => {
       email: email,
       password: password,
     });
+    const token = createToken(user._id)
+    res.cookie('created with jwt', token, {httpOnly: true, maxAge: expireTime *1000}) //cookie uses miliseconds as unit so we multiply by 1000
     res.status(201);
-    res.send(user);
+    res.json({user: user._id});
+
+    
   } catch (err) {
     const errors = handleErrors(err); // this is a cb function for catching the err.message which is came from to our User model
     res.status(400);
@@ -50,12 +67,13 @@ module.exports.loginGet = (req, res) => {
 module.exports.loginPost = async (req, res) => {
   const { email, password } = req.body;
 
-  try {
-    const user = User.create({
-      email: email,
-      password: password,
-    });
-  } catch (err) {
-    console.log(error);
-  }
+try {
+  const user = await User.login(email, password);
+  res.status(200).json({user: user._id})
+
+} catch (error) {
+  res.status(400)
+  res.json({})
+}
+
 };
