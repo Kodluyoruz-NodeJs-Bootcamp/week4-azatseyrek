@@ -205,16 +205,12 @@ footer {
   width: 750px;
 }
 
-.logli:hover{
+.hoverBtn:hover{
   border-radius: 36px;
   background: #f68c7e;
   color: aliceblue;
 }
-.sigli:hover{
-  border-radius: 36px;
-  background: #f68c7e;
-  color: aliceblue;
-}
+
 
 @media screen and (max-width: 992px) {
   .vectorContainer {

@@ -1,51 +1,20 @@
-
-
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-  <title>Gusto Remote Team</title>
-  <link rel="stylesheet" href="/styles.css">
-</head>
+  <%- include('partials/header'); -%>
 
-<body>
-  <nav>
+  <ul class="programmers">
+    <% for(var i = 0; i < allUser.length; i++) {  %>
+      <li class="programmer">
+        <img src="/gusto.png" alt=" gusto logo">
+        <h4><%= allUser[i].name + " " + allUser[i].surname %></h4>
+        <p> <%= allUser[i].email %></p>
+      </li>
+    <% } %>
+  
+    
+  </ul>
 
-    <h1><a href="/"><i id="gustoLogo" class="fas fa-home"></i></a></h1>
+  <%- include('partials/footer'); -%>
 
-    <ul>
 
-      <li ><a class="logli" href="/login" >Log in</a></li>
-      <li ><a class="sigli" href="/signup" >Sign up</a></li>
 
-    </ul>
-
-  </nav>
-
-<ul class="programmers">
-  <li class="programmer">
-    <img src="/gusto.png" alt=" gusto logo">
-    <h4>Azat Seyrek</h4>
-    <p>NodeJs Developer</p>
-  </li>
-  <li class="programmer">
-    <img src="/gusto.png" alt=" gusto logo">
-    <h4>Azat Seyrek</h4>
-    <p>NodeJs Developer</p>
-  </li>
-  <li class="programmer">
-    <img src="/gusto.png" alt=" gusto logo">
-    <h4>Azat Seyrek</h4>
-    <p>NodeJs Developer</p>
-  </li>
-  <li class="programmer">
-    <img src="/gusto.png" alt=" gusto logo">
-    <h4>Azat Seyrek</h4>
-    <p>NodeJs Developer</p>
-  </li>
-</ul>
-
-<%- include('partials/footer'); -%>

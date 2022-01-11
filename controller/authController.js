@@ -42,7 +42,7 @@ const handleErrors = (err) => {
 // create json web token
 const maxAge = 3 * 24 * 60 * 60; // for expiresIn parameter
 
-// we are going to use this createToke function inside the create User  !!!
+// we are going to use this createToken function inside the User.create  !!!
 const createToken = (id) => {
   return jwt.sign({ id }, "gusto remote team", {
     expiresIn: maxAge
@@ -59,10 +59,10 @@ module.exports.loginGet = (req, res) => {
 }
 
 module.exports.signupPost = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name, surname } = req.body;
 
   try {
-    const user = await User.create({ email, password });
+    const user = await User.create({ email, password, name, surname });
     const token = createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 }); //cookie uses miliseconds as unit so we multiply by 1000
     res.status(201).json({ user: user._id });
@@ -82,6 +82,7 @@ module.exports.loginPost = async (req, res) => {
     const token = createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(200).json({ user: user._id });
+
   } 
   catch (err) {
     const errors = handleErrors(err);
@@ -89,3 +90,9 @@ module.exports.loginPost = async (req, res) => {
   }
 
 }
+// we can not delete jwt but we can define the key as a empty string. (no match)
+module.exports.logoutGet = (req, res) => {
+  res.cookie('jwt', "" , {maxAge: 1})
+  res.redirect('/')
+}
+
