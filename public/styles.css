@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 body {
-  margin: 20px 40px;
+  margin: 0px 40px;
   font-size: 1.2rem;
   letter-spacing: 1px;
   background: #fafafa;
@@ -24,29 +24,24 @@ footer {
   padding: 0;
   font-family: "Quicksand", sans-serif;
   color: #444;
-  background: #fafafa;
+  /* background: #fafafa; */
   padding-top: 30px;
-
-
 }
 
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 ul {
   list-style-type: none;
 }
 a {
   text-decoration: none;
+
 }
 nav {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 60px;
+  height: 4rem;
+
 }
 nav ul {
   display: flex;
@@ -62,11 +57,14 @@ nav li a {
   display: block;
   padding: 10px 16px;
   letter-spacing: 2px;
+
 }
 
 #gustoLogo {
   color: #f68c7e;
+
 }
+
 
 #gustoLogo:hover {
   color: #f45d48;
@@ -132,10 +130,7 @@ header {
   display: flex;
   align-items: center;
 }
-header img {
-  width: 250px;
-  margin-right: 40px;
-}
+
 header h2 {
   font-size: 3em;
   margin-bottom: 10px;
@@ -179,8 +174,7 @@ footer {
   margin-top: 120px;
   color: #aaa;
   position: fixed;
-  height: 50px;
-
+  padding-bottom: 10px;
   bottom: 0px;
   left: 0px;
   right: 0px;
@@ -197,31 +191,42 @@ footer {
   width: 60%;
 }
 
-.logo img {
-  height: 200px;
-  width: auto;
-  opacity: 0.7;
-  border: 1px solid white;
-  border-radius: 16px;
-}
-
-.logo img:hover {
-  opacity: 1;
-  transition: 0.2s ease-out;
-}
-
-.vector_container {
+.vectorContainer {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: row;
   margin-bottom: 50px;
-  width: 80%;
+  width: 100%;
 
 }
 
-.vector_container .vector img {
+.vectorContainer .vector img {
   width: 750px;
 }
 
+.logli:hover{
+  border-radius: 36px;
+  background: #f68c7e;
+  color: aliceblue;
+}
+.sigli:hover{
+  border-radius: 36px;
+  background: #f68c7e;
+  color: aliceblue;
+}
+
+@media screen and (max-width: 992px) {
+  .vectorContainer {
+    flex-direction: column;
+  }
+  .vectorContainer .vector img {
+    width: 600px;
+    margin-left: auto;
+    align-items: center;
+
+  }
+
+  
+}
 

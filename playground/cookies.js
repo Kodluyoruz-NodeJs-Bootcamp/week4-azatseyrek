@@ -1,4 +1,4 @@
-// Example for adding a cookie
+// Example for creating a cookie
 
 const cookieParser = require("cookie-parser");
 

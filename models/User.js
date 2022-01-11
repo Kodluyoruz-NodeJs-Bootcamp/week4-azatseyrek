@@ -47,7 +47,7 @@ userSchema.pre("save", async function (next) {
        }
        throw Error('incorrect password')
      }
-     throw Error('incorect email')
+     throw Error('incorrect email')
    }
 
 // Create Model
