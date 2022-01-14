@@ -4,6 +4,8 @@ const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
 require("dotenv").config();
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
+const session = require('express-session')
+
 
 const app = express();
 
@@ -11,7 +13,21 @@ const app = express();
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cookieParser());
+app.use(session({
+  secret: "secretkey",
+  cookie: {
+    maxAge:600000,
+    httpOnly: true
+  },
+  resave: false,
+  saveUninitialized:false
+}))
 
+// app.get('/test', (req,res)=> {
+//   req.session.browserInfo = req.headers["user-agent"]
+//   res.send("hello")
+//   console.log(req.session);
+// })
 // view engine
 app.set('view engine', 'ejs');
 

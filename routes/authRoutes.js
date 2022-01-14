@@ -20,3 +20,5 @@ router.get("/logout", authController.logoutGet);
 // I used MVC patterns in this project while that I will define my functions in 'controllers' folder
 
 module.exports = router
+
+
