@@ -1,12 +1,8 @@
 
 
-# week4-azatseyrek
+# week4-azatseyrek- JWT Auth
 
-Drag-Drop To-Do
 
-In this project, I prepared a to-do application using DRAG & DROP.
 
-You can test it live
-
-Demo Link :</span> <a href=#>Drag & Drop To-Do</a>
+Demo Link :</span> <a href=#>GustoAuthProject</a>
 

@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 require("dotenv").config();
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const session = require('express-session')
+const PORT = process.env.PORT || 3000
 
 
 const app = express();
@@ -28,9 +29,9 @@ app.set('view engine', 'ejs');
 
 // database connection
 
-const dbURI = process.env.DB_URI;
+const dbURI = process.env.MONGODB_DB_URI;
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
-  .then((result) => app.listen(3000), console.log("port started"))
+  .then((result) => app.listen(PORT), console.log(`port started at ${PORT}`))
   .catch((err) => console.log(err));
 
 // routes
