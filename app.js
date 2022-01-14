@@ -14,7 +14,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(cookieParser());
 app.use(session({
-  secret: "secretkey",
+  secret: process.env.SESSION_KEY,
   cookie: {
     maxAge:600000,
     httpOnly: true
@@ -23,11 +23,6 @@ app.use(session({
   saveUninitialized:false
 }))
 
-// app.get('/test', (req,res)=> {
-//   req.session.browserInfo = req.headers["user-agent"]
-//   res.send("hello")
-//   console.log(req.session);
-// })
 // view engine
 app.set('view engine', 'ejs');
 

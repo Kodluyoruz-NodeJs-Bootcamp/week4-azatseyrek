@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const session = require('express-session')
 
 
@@ -46,8 +47,8 @@ const handleErrors = (err) => {
 const maxAge = 10 * 60; // for expiresIn parameter
 
 // we are going to use this createToken function inside the User.create  !!!
-const createToken = (id) => {
-  return jwt.sign({ id }, "gusto remote team", {
+const createToken = (id, browserInfo) => {
+  return jwt.sign({ id, browserInfo }, process.env.JWT_KEY, {
     expiresIn: maxAge,
   });
 };
@@ -63,10 +64,11 @@ module.exports.loginGet = (req, res) => {
 
 module.exports.signupPost = async (req, res) => {
   const { email, password, name, surname } = req.body;
+  const browserInfo = req.headers["user-agent"]
 
   try {
     const user = await User.create({ email, password, name, surname });
-    const token = createToken(user._id);
+    const token = createToken(user._id, browserInfo);
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 }); //cookie uses miliseconds as unit so we multiply by 1000
     res.status(201).json({ user: user._id });
   } catch (err) {
@@ -77,10 +79,11 @@ module.exports.signupPost = async (req, res) => {
 
 module.exports.loginPost = async (req, res) => {
   const { email, password } = req.body;
+  const browserInfo = req.headers["user-agent"]
 
   try {
     const user = await User.login(email, password);
-    const token = createToken(user._id);
+    const token = createToken(user._id, browserInfo);
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(200).json({ user: user._id });
   } catch (err) {
