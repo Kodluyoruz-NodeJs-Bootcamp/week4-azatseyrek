@@ -33,7 +33,6 @@ ul {
 }
 a {
   text-decoration: none;
-
 }
 nav {
   display: flex;
@@ -41,7 +40,6 @@ nav {
   align-items: flex-end;
   margin-bottom: 60px;
   height: 4rem;
-
 }
 nav ul {
   display: flex;
@@ -57,14 +55,11 @@ nav li a {
   display: block;
   padding: 10px 16px;
   letter-spacing: 2px;
-
 }
 
 #gustoLogo {
   color: #f68c7e;
-
 }
-
 
 #gustoLogo:hover {
   color: #f45d48;
@@ -198,19 +193,17 @@ footer {
   flex-direction: row;
   margin-bottom: 50px;
   width: 100%;
-
 }
 
 .vectorContainer .vector img {
   width: 750px;
 }
 
-.hoverBtn:hover{
+.hoverBtn:hover {
   border-radius: 36px;
   background: #f68c7e;
   color: aliceblue;
 }
-
 
 @media screen and (max-width: 992px) {
   .vectorContainer {
@@ -220,9 +213,10 @@ footer {
     width: 600px;
     margin-left: auto;
     align-items: center;
-
   }
-
-  
 }
 
+.signup_form_container {
+  height: 100%;
+  margin-bottom: 25px;
+}

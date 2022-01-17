@@ -1,9 +1,8 @@
 //Creating our routes
 //It is look like a get request but using Router is an easier way. You can keep in mind that is similar to its usage in ReactJs
-import { Router } from "express"
-// const { getProgrammers } = require("../controller/appController");
-// authController inport
-const authController = require("../controller/authController");
+import { Router } from "express";
+import { clearCookie, redirect, render } from "./helpers";
+import { login, register } from "../controller/authController";
 
 const router = Router();
 
@@ -12,12 +11,15 @@ const router = Router();
 
 // router.get("/app", getProgrammers);
 
-router.get("/signup", authController.signupGet);
-router.post("/signup", authController.signupPost);
-router.get("/login", authController.loginGet);
-router.post("/login", authController.loginPost);
-router.get("/logout", authController.logoutGet);
+// View Routes
+router.get("/login", render("login"));
+router.get("/signup", render("signup"));
+router.get("/logout", clearCookie, redirect("/"));
+
+router.post("/login", login);
+router.post("/signup", register);
 
 // I used MVC patterns in this project while that I will define my functions in 'controllers' folder
 
-module.exports = router;
+const authRoutes = router;
+export default authRoutes;
