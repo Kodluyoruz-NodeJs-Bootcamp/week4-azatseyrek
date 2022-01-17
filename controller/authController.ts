@@ -1,8 +1,5 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
-const session = require('express-session')
-
 
 
 // handle errors
