@@ -33,7 +33,7 @@ const form = document.querySelector('form')
             }
             if (data.user) {
                 // The Location.assign method causes the window to load and display the document at the URL specified. After the navigation occurs, the user can navigate back to the page that called Location.assign by pressing the "back" button.
-                location.replace('/app') 
+                location.replace('/programmers') 
                 // redirect to Programmers Page
             }
         } catch (err) {

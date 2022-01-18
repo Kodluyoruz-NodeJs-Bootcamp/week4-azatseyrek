@@ -33,7 +33,7 @@ app.use(checkUser);
 // routes
 // app.get('*', checkUser) //we want to check the user at all of paths so we added the middleware which we created inside the authMiddleware.js to all routes
 app.get("/", render("home"));
-app.get("/app", requireAuth, render("programmers"));
+app.get("/programmers", requireAuth, render("programmers"));
 app.use(authRoutes);
 
 // database connection
