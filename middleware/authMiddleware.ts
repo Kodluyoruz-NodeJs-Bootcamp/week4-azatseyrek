@@ -14,8 +14,7 @@ export const requireAuth: RequestHandler = (req, res, next) => {
       process.env.JWT_KEY,
       (err: VerifyErrors, decodedToken: any) => {
         if (decodedToken.browserInfo === req.headers["user-agent"]) {
-          console.log(decodedToken);
-          console.log(req.session);
+          
           next();
         } else {
           console.log(err);
@@ -45,7 +44,7 @@ export const checkUser: RequestHandler = (req, res, next) => {
         } else {
           console.log(decodedToken);
           const repository = getManager().getRepository(User);
-          let user = await repository.find({id: decodedToken.id})
+          let user = await repository.findOne({id: decodedToken.id})
           res.locals.user = user;
           let allUser = await repository.find()
           res.locals.allUser = allUser;

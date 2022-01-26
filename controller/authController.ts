@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import { RequestHandler } from "express";
 import { User } from "../entity/user.entity";
 import { getManager } from "typeorm";
+import { RegisterValidation } from "../validations/register.validataion";
+
 
 // create json web token
 const maxAge = 10 * 60; // for expiresIn parameter
@@ -38,6 +40,14 @@ export const login: RequestHandler = async (req, res) => {
 
 export const register: RequestHandler = async (req, res) => {
   const { email, password, name, surname } = req.body;
+
+  const { error } = RegisterValidation.validate(req.body); // it returns a boolean
+
+  if (error) {
+    return res.status(400).send(error.details);
+  }
+
+
   const browserInfo = req.headers["user-agent"];
 
   try {
