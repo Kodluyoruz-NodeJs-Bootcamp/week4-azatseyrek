@@ -26,10 +26,9 @@ const form = document.querySelector('form')
                 }
             })
             const data = await res.json();
-            console.log(data);
             if (data.errors) {
-                emailErrors.textContent = data.errors.email
-                passwordErrors.textContent = data.errors.password
+                emailErrors.textContent = "password or email is not true"
+                passwordErrors.textContent = "password or email is not true"
             }
             if (data.user) {
                 // The Location.assign method causes the window to load and display the document at the URL specified. After the navigation occurs, the user can navigate back to the page that called Location.assign by pressing the "back" button.

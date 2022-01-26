@@ -1,6 +1,7 @@
 import { RequestHandler } from "express";
 import jwt, { VerifyErrors } from "jsonwebtoken";
-import User from "../models/User";
+import { getManager } from "typeorm";
+import { User } from "../entity/user.entity";
 
 export const requireAuth: RequestHandler = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -43,9 +44,10 @@ export const checkUser: RequestHandler = (req, res, next) => {
           next();
         } else {
           console.log(decodedToken);
-          let user = await User.findById(decodedToken.id);
+          const repository = getManager().getRepository(User);
+          let user = await repository.find({id: decodedToken.id})
           res.locals.user = user;
-          let allUser = await User.find({});
+          let allUser = await repository.find()
           res.locals.allUser = allUser;
           next();
         }

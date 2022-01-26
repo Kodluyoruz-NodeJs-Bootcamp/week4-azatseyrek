@@ -1,6 +1,6 @@
-# week4-azatseyrek (typescript auth (js to ts))
+# week5-azatseyrek (typescript and typeORM auth (js to ts))
 
-This is an example of how to use the Typescript to add authentication to a NodeJS application with Express.
+This is an example of how to use the Typescript and TypeOrm to add authentication to a NodeJS application with Express.
 
 In this project I create an AUTH app using JWT.
 
